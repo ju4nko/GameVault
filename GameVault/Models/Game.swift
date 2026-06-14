@@ -1,4 +1,6 @@
 import Foundation
+import SwiftData
+import SwiftUI
 
 
 enum Platform: String, CaseIterable, Codable, Hashable {
@@ -44,18 +46,29 @@ enum GameStatus: String, CaseIterable, Codable, Hashable {
     
     var iconName: String {
         switch self {
-            case .backlog: "tray.full"
+        case .backlog: "tray.full"
         case .playing: "play.fill"
         case .completed: "checkmark.circle.fill"
         case .abandoned: "xmark.circle"
         case .wishlist: "heart.fill"
         }
     }
+    
+    var iconColor: Color {
+        switch self {
+        case .backlog: .orange
+        case .playing: .blue
+        case .completed: .green
+        case .abandoned: .gray
+        case .wishlist: .pink
+        }
+    }
 }
 
-struct Game: Identifiable, Hashable, Codable {
-    let id: UUID
-    let rawgID: Int?
+@Model
+final class Game {
+    var id: UUID
+    var rawgID: Int?
     var title: String
     var platform: Platform
     var status: GameStatus
@@ -63,7 +76,7 @@ struct Game: Identifiable, Hashable, Codable {
     var hoursPlayed: Double
     var coverArtURL: URL?
     var completionDate: Date?
-    let dateAdded: Date
+    var dateAdded: Date
     var notes: String?
     
     init(id: UUID = UUID(),

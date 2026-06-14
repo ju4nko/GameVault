@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct GameRowView: View {
+    
+    @State private var isHovered: Bool = false
     let game: Game
+    let onDelete: () -> Void
     var body: some View {
         HStack {
             Image(systemName: "gamecontroller.fill")
@@ -20,7 +24,7 @@ struct GameRowView: View {
                 Text(game.platform.displayName)
                     .font(.subheadline) // Plataforma
                     .foregroundStyle(.secondary)
-                Label(game.status.displayName, systemImage: game.status.iconName)
+                Label(game.status.displayName, systemImage: game.status.iconName).foregroundStyle(game.status.iconColor)
                 Text("\(game.hoursPlayed.formatted())h") // Horas jugadas
                 if let rating = game.rating {
                     HStack(spacing: 2) {
@@ -34,11 +38,27 @@ struct GameRowView: View {
                 }
             }
             Spacer()
+            #if os(macOS)
+            Button {
+                onDelete()
+            } label: {
+                Image(systemName: "trash")
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.red)
+            .opacity(isHovered ? 1: 0)
+            #endif
+        }
+        .contentShape(Rectangle())
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
         }
         
     }
 }
 
 #Preview {
-    GameRowView(game: Game.sampleGames[4])
+    GameRowView(game: Game.sampleGames[4]) {}
 }
