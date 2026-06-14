@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    let games: [Game] = Game.sampleGames
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List(games) { game in
+                GameRowView(game: game)
+            }
+            .navigationTitle("Mi biblioteca")
         }
-        .padding()
     }
 }
 

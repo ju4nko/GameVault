@@ -10,22 +10,9 @@
 		81EC02D22FDE9CC20062C446 /* GameVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8198EFEA2FDECA8300258BAD /* Exceptions for "GameVault" folder in "GameVault" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Models/Game.swift,
-			);
-			target = 81EC02D12FDE9CC20062C446 /* GameVault */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		81EC02D42FDE9CC20062C446 /* GameVault */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				8198EFEA2FDECA8300258BAD /* Exceptions for "GameVault" folder in "GameVault" target */,
-			);
 			path = GameVault;
 			sourceTree = "<group>";
 		};
