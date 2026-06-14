@@ -41,3 +41,18 @@ enum GameStatus: String, CaseIterable, Codable, Hashable {
         }
     }
 }
+
+struct Game: Identifiable, Hashable, Codable {
+    let id: UUID = UUID()
+    let rawgID: Int?
+    var title: String
+    var platform: Platform
+    var status: GameStatus
+    var rating: Int?
+    var hoursPlayed: Double
+    var coverArtURL: URL?
+    var completionDate: Date?
+    let dateAdded: Date = .now
+    var notes: String?
+    
+}
