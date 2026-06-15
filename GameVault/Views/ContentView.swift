@@ -14,9 +14,9 @@ struct ContentView: View {
     
     @State private var isShowingForm: Bool = false
     @State private var gameBeingEdited: Game? = nil
+    @State private var isShowingSearch: Bool = false
     
     var body: some View {
-        
         NavigationStack {
             Group {
                 if games.isEmpty {
@@ -46,8 +46,18 @@ struct ContentView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .primaryAction){
-                    Button {
-                        isShowingForm = true
+                    Menu {
+                        Button {
+                            isShowingForm = true
+                        } label: {
+                            Label("Añadir manualmente", systemImage: "square.and.pencil")
+                        }
+                        
+                        Button {
+                            isShowingSearch = true
+                        } label: {
+                            Label("Buscar en RAWG", systemImage: "magnifyingglass")
+                        }
                     } label: {
                         Label("Añadir juego", systemImage: "plus")
                     }
@@ -59,6 +69,9 @@ struct ContentView: View {
         }
         .sheet(item: $gameBeingEdited) { game in
             GameFormView(gameToEdit: game)
+        }
+        .sheet(isPresented: $isShowingSearch) {
+            GameSearchView()
         }
     }
     
