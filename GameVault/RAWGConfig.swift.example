@@ -1,0 +1,20 @@
+//
+//  RAWGConfig.swift.example
+//  GameVault
+//
+//  Plantilla para configurar tu API Key de RAWG.
+//
+//  Pasos para usar:
+//  1. Copia este archivo y renómbralo a `RAWGConfig.swift` en la misma carpeta.
+//  2. Sustituye el valor de `apiKey` por tu key real (regístrate gratis en https://rawg.io/apidocs).
+//  3. En Xcode, añade `RAWGConfig.swift` al target `GameVault` (File Inspector → Target Membership).
+//
+//  IMPORTANTE: `RAWGConfig.swift` está en `.gitignore` y NO debe commitearse.
+//
+
+import Foundation
+
+enum RAWGConfig {
+    static let apiKey = "<TU_API_KEY_AQUÍ>"
+    static let baseURL = URL(string: "https://api.rawg.io/api")!
+}

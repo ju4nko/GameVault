@@ -51,12 +51,22 @@ GameVault/
 └── README.md
 ```
 
+## Setup
+
+La integración con RAWG requiere una API key personal. Por seguridad, el archivo con la key está en `.gitignore` y no se sube al repositorio.
+
+1. Regístrate gratis en [RAWG API](https://rawg.io/apidocs) y copia tu key.
+2. Copia `GameVault/RAWGConfig.swift.example` a `GameVault/RAWGConfig.swift` (misma carpeta).
+3. Edita `RAWGConfig.swift` y sustituye `<TU_API_KEY_AQUÍ>` por tu key.
+4. En Xcode, asegúrate de que `RAWGConfig.swift` está añadido al target `GameVault` (File Inspector → Target Membership).
+
 ## Cómo ejecutar
 
 1. Clona el repositorio.
-2. Abre `GameVault.xcodeproj` en Xcode.
-3. En *Signing & Capabilities*, selecciona **Sign to Run Locally** (evita el límite de App IDs de cuentas gratuitas).
-4. Selecciona un destino (My Mac o un simulador iOS) y pulsa Run.
+2. Sigue la sección **Setup** anterior para configurar tu API key.
+3. Abre `GameVault.xcodeproj` en Xcode.
+4. En *Signing & Capabilities*, selecciona **Sign to Run Locally** (evita el límite de App IDs de cuentas gratuitas).
+5. Selecciona un destino (My Mac o un simulador iOS) y pulsa Run.
 
 ## Licencia
 
