@@ -15,9 +15,18 @@ struct GameRowView: View {
     let onDelete: () -> Void
     var body: some View {
         HStack {
-            Image(systemName: "gamecontroller.fill")
-                .font(.largeTitle)
-                .foregroundStyle(.secondary)
+            CachedAsyncImage(url: game.coverArtURL) { phase in
+                switch phase {
+                case .success(let image):
+                    image.resizable().scaledToFill()
+                case .failure, .empty:
+                    Image(systemName:"gamecontroller.fill")
+                @unknown default:
+                    Color.clear
+                }
+            }
+            .frame(width: 60,height: 60 )
+            .clipShape(RoundedRectangle(cornerRadius: 6))
             VStack(alignment: .leading) {
                 Text(game.title)
                     .font(.headline) // Título
@@ -60,5 +69,5 @@ struct GameRowView: View {
 }
 
 #Preview {
-    GameRowView(game: Game.sampleGames[4]) {}
+    GameRowView(game: Game.sampleGames[0]) {}
 }

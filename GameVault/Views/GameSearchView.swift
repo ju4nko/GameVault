@@ -21,7 +21,7 @@ struct GameSearchView: View {
                     dismiss()
                 } label: {
                     HStack {
-                        AsyncImage(url: rawgGame.backgroundImage) { image in
+                        CachedAsyncImage(url: rawgGame.backgroundImage) { image in
                             image.resizable().scaledToFill()
                         } placeholder: {
                             Color.gray.opacity(0.2)
