@@ -65,6 +65,19 @@ enum GameStatus: String, CaseIterable, Codable, Hashable {
     }
 }
 
+enum SortOption: String, CaseIterable, Identifiable {
+    case titleAZ = "Título A-Z"
+    case titleZA = "Título Z-A"
+    case dateAddedNewest = "Más recientes"
+    case dateAddedOldest = "Más antiguos"
+    case hoursPlayedMost = "Más horas"
+    case hoursPlayedLeast = "Menos horas"
+    case ratingHighest = "Mejor valorados"
+    case ratingLowest = "Peor valorados"
+    
+    var id: String { rawValue }
+}
+
 @Model
 final class Game {
     var id: UUID
