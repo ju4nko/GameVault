@@ -13,7 +13,6 @@ struct ContentView: View {
     @Query private var games: [Game]
     
     @State private var isShowingForm: Bool = false
-    @State private var gameBeingEdited: Game? = nil
     @State private var isShowingSearch: Bool = false
     @State private var searchText: String = ""
     @State private var statusFilter: GameStatus? = nil
@@ -61,18 +60,18 @@ struct ContentView: View {
                 } else {
                     List {
                         ForEach(sortedGames) { game in
-                            GameRowView(game: game) {
-                                modelContext.delete(game)
-                            }
-                            .contextMenu {
-                                Button(role: .destructive) {
+                            NavigationLink(value: game) {
+                                GameRowView(game: game) {
                                     modelContext.delete(game)
-                                } label: {
-                                    Label("Eliminar", systemImage: "trash")
                                 }
-                            }
-                            .onTapGesture {
-                                gameBeingEdited = game
+                                .buttonStyle(.plain)
+                                .contextMenu {
+                                    Button(role: .destructive) {
+                                        modelContext.delete(game)
+                                    } label: {
+                                        Label("Eliminar", systemImage: "trash")
+                                    }
+                                }
                             }
                             
                         }
@@ -80,6 +79,9 @@ struct ContentView: View {
                     }
                     
                 }
+            }
+            .navigationDestination(for: Game.self) { game in
+                GameDetailView(game: game)
             }
             .searchable(text: $searchText, prompt: "Buscar en tu biblioteca")
             .navigationTitle("Mi biblioteca")
@@ -151,9 +153,6 @@ struct ContentView: View {
         }
         .sheet(isPresented: $isShowingForm) {
             GameFormView()
-        }
-        .sheet(item: $gameBeingEdited) { game in
-            GameFormView(gameToEdit: game)
         }
         .sheet(isPresented: $isShowingSearch) {
             GameSearchView()
