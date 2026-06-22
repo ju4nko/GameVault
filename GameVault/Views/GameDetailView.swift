@@ -24,11 +24,17 @@ struct GameDetailView: View {
                     case .success(let image): image.resizable().scaledToFill()
                     default:
                         ZStack {
-                            Color.gray.opacity(0.2)
-                            Image(systemName: "gamecontroller.fill")
-                                .font(.system(size: 80))
-                                .foregroundStyle(.secondary)
+                            LinearGradient(
+                                colors: [game.status.iconColor.opacity(0.6), game.status.iconColor.opacity(0.2)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                            Image(systemName: game.status.iconName)
+                                .font(.system(size: 100))
+                                .foregroundStyle(.white.opacity(0.5))
                         }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        
                     }
                 }
                 .frame(height: 240)
@@ -76,7 +82,7 @@ struct GameDetailView: View {
             ToolbarItem(placement: .primaryAction) {
                 Button("Editar") {
                     isEditing = true
-                }
+                }.buttonStyle(.glass)
             }
         }
         .sheet(isPresented: $isEditing) {

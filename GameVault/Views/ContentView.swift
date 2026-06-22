@@ -101,6 +101,7 @@ struct ContentView: View {
                         }
                     } label: {
                         Label("Añadir juego", systemImage: "plus")
+                            .buttonStyle(.glass)
                     }
                 }
                 ToolbarSpacer(.fixed)
@@ -147,6 +148,16 @@ struct ContentView: View {
                         }
                     } label: {
                         Label("Ordenar", systemImage: "arrow.up.arrow.down")
+                    }
+                }
+                
+                ToolbarSpacer(.fixed)
+                
+                ToolbarItem {
+                    NavigationLink {
+                        StatsView()
+                    } label: {
+                        Label("Estadísticas", systemImage: "...")
                     }
                 }
             }
