@@ -21,7 +21,6 @@ extension RAWGGame {
     private var inferredPlatform: Platform {
         guard let platforms else { return .pc }
         for wrapper in platforms {
-            print("[RAWGMapper] La plataforma que recibe es: \(wrapper.platform.slug)")
             switch wrapper.platform.slug {
             case "playstation5":         return .ps5
             case "playstation4":         return .ps4
